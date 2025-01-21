@@ -13,6 +13,7 @@ main{
     left: 50%;
     transform: translate(-50%, -50%);
     animation: box-shadow-animation 5s ease infinite;
+    text-align: center;
 
 }
 
@@ -56,6 +57,7 @@ input{
     padding: 10px;
     border-radius: 12px;
     transition: 0.3s;
+    background-color: #4E6766;
 }
 
 
@@ -80,4 +82,14 @@ input:hover{
     100%{
         box-shadow: 0em 0em 1em rgb(5, 0, 0), inset 0em 0em 1em rebeccapurple;
     }
+}
+
+#link {
+    color: #F7DD72;
+    font-size: 12px;
+}
+
+#erro {
+    color: rgb(104, 6, 6);
+    font-size: 14px;
 }

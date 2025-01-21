@@ -1,6 +1,7 @@
 const user = document.querySelector('#user');
 const key = document.querySelector('#key');
 const loginButton = document.querySelector('#login');
+const erro = document.querySelector('#erro');
 
 function login() {
     if (localStorage.length > 0){
@@ -14,16 +15,20 @@ function login() {
                 if (object.key === keyValue){
                     window.location.href = "to_do_list.html";
                 } else {
+                    erro.innerHTML = "Usuário ou senha invalidos"
                     console.log("usuario ou senha invalidos");
                 }
             } else {
+                erro.innerHTML = "Usuário ou senha invalidos"
                 console.log("usuario ou senha invalidos");
             }
         } else {
+            erro.innerHTML = "Usuário ou senha invalidos"
             console.log("usuario ou senha invalidos");
         }
     } else {
-        console.log('Não existe cadastro no sistema!!!')
+        erro.innerHTML = "Não existe nenhum cadastro no sistema!!!"
+        console.log('Não existe nenhum cadastro no sistema!!!')
     }
         
     

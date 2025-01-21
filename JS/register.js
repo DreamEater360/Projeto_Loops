@@ -1,6 +1,7 @@
 const user = document.querySelector('#user');
 const key = document.querySelector('#key');
 const registerButton = document.querySelector('#register');
+const erro = document.querySelector('#erro');
 
 function register() {
 
@@ -18,9 +19,9 @@ function register() {
         localStorage.setItem(`${ID}` ,objectJson)
     } else {
         console.log('Usuario ja cadastrado.')
+        erro.innerHTML = "Usuario ja cadastrado, tente novamente."
     }
     
-    console.log(localStorage.length)
 }
 
 function createId(e){
