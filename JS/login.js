@@ -13,7 +13,7 @@ function login() {
         if (object){
             if (object.user === userValue){
                 if (object.key === keyValue){
-                    window.location.href = "to_do_list.html";
+                    window.location.href = "HTML/to_do_list.html";
                 } else {
                     erro.innerHTML = "Usuário ou senha invalidos"
                     console.log("usuario ou senha invalidos");
