@@ -1,8 +1,21 @@
 const list = document.querySelector('.list-task'); //ul
 const inputTask = document.querySelector('.input-task'); //input
 const buttonAddTask = document.querySelector('.button-add-task'); //button
+const botoesDeletar = document.querySelectorAll(".btDeletar")
+const botoesEditar = document.querySelectorAll(".btEditar")
+const botoesConcluido = document.querySelectorAll(".btConcluido")
 
-buttonAddTask.addEventListener("click", function() {
+function deletarToDo (botao){
+    botao.addEventListener("click", function(event) {
+        event.preventDefault()
+
+        let liMae = botao.parentElement
+        liMae.remove()
+    })
+}
+
+buttonAddTask.addEventListener("click", function(event) {
+    event.preventDefault()
     let novoLi = document.createElement("li")
     novoLi.className = "task"
 
@@ -37,6 +50,12 @@ buttonAddTask.addEventListener("click", function() {
     novoLi.appendChild(btDelete)
 
     list.appendChild(novoLi)
+
+    deletarToDo(btDelete)
+})
+
+botoesDeletar.forEach(function(botao) {
+    deletarToDo(botao)
 })
 
 function lerElem(){
@@ -44,9 +63,5 @@ function lerElem(){
 }
 
 function atuaElem(){
-
-}
-
-function delElem(){
 
 }
