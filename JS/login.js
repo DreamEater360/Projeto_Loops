@@ -1,30 +1,6 @@
-import { createId } from "./create_Id";
-
 const user = document.querySelector('#user');
 const key = document.querySelector('#key');
 const loginButton = document.querySelector('#login');
-const registerButton = document.querySelector('#');
-
-function register() {
-
-    let userValue = String(user.value);
-    let keyValue = String(key.value);
-    let ID = createId(userValue);
- 
-    if (!localStorage.getItem(`${ID}`)){
-        let object = {user: userValue,
-                key: keyValue,
-            }
-
-        const objectJson = JSON.stringify(object);
-
-        localStorage.setItem(`${ID}` ,objectJson)
-    } else {
-        console.log('Usuario ja cadastrado.')
-    }
-    
-    console.log(localStorage.length)
-}
 
 function login() {
     if (localStorage.length > 0){
@@ -53,5 +29,16 @@ function login() {
     
 }
 
+function createId(e){
+
+    let ID = `${e.slice(0, 2)}${e.slice(5, 2)}${e.slice(1, 0)}`;
+    return ID
+
+}
+
 
 loginButton.addEventListener('click', login);
+
+
+
+

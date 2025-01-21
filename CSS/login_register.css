@@ -44,7 +44,7 @@ input{
     transition: 0.3s;
 }
 
-#enter{
+.enter{
     font-family: 'Didot', serif;
     display: block;
     margin: 2rem auto;
@@ -63,7 +63,7 @@ input:hover{
     box-shadow: 0rem 0rem 2rem rgb(199, 180, 180);
 }
 
-#enter:hover{
+.enter:hover{
     background-color:rgb(24, 146, 247);
     box-shadow: 0rem 0rem 2rem rgb(24, 146, 247);
     color: black;
