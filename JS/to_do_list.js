@@ -5,7 +5,7 @@ const botoesDeletar = document.querySelectorAll(".btDeletar")
 const botoesEditar = document.querySelectorAll(".btEditar")
 const botoesConcluido = document.querySelectorAll(".btConcluido")
 
-function deletarToDo (botao){
+function deletarToDo(botao) {
     botao.addEventListener("click", function(event) {
         event.preventDefault()
 
@@ -13,6 +13,69 @@ function deletarToDo (botao){
         delLocalStorage(liMae)
         liMae.remove()
     })
+}
+
+function alterarToDo(botao) {
+    botao.addEventListener("click", function(event) {
+        event.preventDefault()
+
+        let liMae = botao.parentElement
+        let nomeTarefa = liMae.querySelector("p")
+
+        let novoNome = document.createElement("input")
+        novoNome.type = "text"
+        novoNome.value = nomeTarefa.textContent
+
+        liMae.replaceChild(novoNome, nomeTarefa)
+
+        let btSalvar = document.createElement("button")
+        btSalvar.textContent = "Salvar"
+
+        liMae.replaceChild(btSalvar, botao)
+
+        btSalvar.addEventListener("click", function() {
+            nomeTarefa.textContent = novoNome.value
+            liMae.replaceChild(nomeTarefa, novoNome)
+            liMae.replaceChild(botao, btSalvar)
+        })
+    })
+}
+
+function addLocalStorage(task) {
+    let taskValue = String(task.value);
+    let ID = createId(taskValue);
+ 
+    let object = {task: taskValue,
+        }
+
+    let objectJson = JSON.stringify(object);
+    localStorage.setItem(`${ID}` ,objectJson);
+     
+}
+
+function attLocalStorage(taskId, novoValor) {
+    if (localStorage.getItem(`${taskId}`)){
+        let object = JSON.parse(localStorage.getItem(`${ID}`));
+        object.task = `${novoValor}`;
+        let objectJson = JSON.stringify(object);
+        localStorage.setItem(`${taskId}`, objectJson);
+    }
+
+}
+
+function delLocalStorage(task){
+    let taskValue = String(task.value);
+    let ID = createId(taskValue);
+
+    localStorage.removeItem(`${ID}`);
+
+}
+
+function createId(e){
+
+    let ID = `${e.slice(0, 2)}${e.slice(5, 2)}${e.slice(1, 0)}`;
+    return ID
+
 }
 
 buttonAddTask.addEventListener("click", function(event) {
@@ -54,53 +117,13 @@ buttonAddTask.addEventListener("click", function(event) {
     list.appendChild(novoLi)
 
     deletarToDo(btDelete)
+    alterarToDo(btEditar)
 })
 
 botoesDeletar.forEach(function(botao) {
     deletarToDo(botao)
 })
 
-function lerElem(){
-
-}
-
-function atuaElem(){
-
-}
-
-function addLocalStorage(task){
-    let taskValue = String(task.value);
-    let ID = createId(taskValue);
- 
-    let object = {task: taskValue,
-        }
-
-    let objectJson = JSON.stringify(object);
-    localStorage.setItem(`${ID}` ,objectJson);
-     
-}
-
-function attLocalStorage(taskId, novoValor){
-    if (localStorage.getItem(`${taskId}`)){
-        let object = JSON.parse(localStorage.getItem(`${ID}`));
-        object.task = `${novoValor}`;
-        let objectJson = JSON.stringify(object);
-        localStorage.setItem(`${taskId}`, objectJson);
-    }
-
-}
-
-function delLocalStorage(task){
-    let taskValue = String(task.value);
-    let ID = createId(taskValue);
-
-    localStorage.removeItem(`${ID}`);
-
-}
-
-function createId(e){
-
-    let ID = `${e.slice(0, 2)}${e.slice(5, 2)}${e.slice(1, 0)}`;
-    return ID
-
-}
+botoesEditar.forEach(function(botao) {
+    alterarToDo(botao)
+})
