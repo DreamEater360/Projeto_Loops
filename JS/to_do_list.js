@@ -10,6 +10,7 @@ function deletarToDo (botao){
         event.preventDefault()
 
         let liMae = botao.parentElement
+        delLocalStorage(liMae)
         liMae.remove()
     })
 }
@@ -80,15 +81,21 @@ function addLocalStorage(task){
 }
 
 function attLocalStorage(taskId, novoValor){
-    let taskIdValue = String(taskId.value);
-    let ID = createId(taskIdValue);
-
-    if (localStorage.getItem(`${ID}`)){
+    if (localStorage.getItem(`${taskId}`)){
         let object = JSON.parse(localStorage.getItem(`${ID}`));
         object.task = `${novoValor}`;
         let objectJson = JSON.stringify(object);
-        localStorage.setItem(`${ID}`, objectJson);
+        localStorage.setItem(`${taskId}`, objectJson);
     }
+
+}
+
+function delLocalStorage(task){
+    let taskValue = String(task.value);
+    let ID = createId(taskValue);
+
+    localStorage.removeItem(`${ID}`);
+
 }
 
 function createId(e){
