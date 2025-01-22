@@ -1,9 +1,11 @@
-const list = document.querySelector('.list-task'); //ul
+const listaToDos = document.querySelector('.list-task'); //ul to dos não concluídas
+const listaConcluidos = document.getElementById("listaConcluidas") //ul to dos concluídas
 const inputTask = document.querySelector('.input-task'); //input
 const buttonAddTask = document.querySelector('.button-add-task'); //button
 const botoesDeletar = document.querySelectorAll(".btDeletar")
 const botoesEditar = document.querySelectorAll(".btEditar")
 const botoesConcluido = document.querySelectorAll(".btConcluido")
+const botoesDesfazer = document.querySelectorAll(".btDesfazer")
 
 function deletarToDo(botao) {
     botao.addEventListener("click", function(event) {
@@ -33,11 +35,51 @@ function alterarToDo(botao) {
 
         liMae.replaceChild(btSalvar, botao)
 
-        btSalvar.addEventListener("click", function() {
+        btSalvar.addEventListener("click", function(event) {
+            event.preventDefault()
             nomeTarefa.textContent = novoNome.value
             liMae.replaceChild(nomeTarefa, novoNome)
             liMae.replaceChild(botao, btSalvar)
         })
+    })
+}
+
+function desfazerToDo(botao) {
+    botao.addEventListener("click", function(event) {
+        event.preventDefault()
+
+        let liMae = botao.parentElement
+
+        let btChecked = document.createElement("button")
+        btChecked.className = "btConcluido"
+        let imgChecked = document.createElement("img")
+        imgChecked.src = "../img/checked.png"
+        btChecked.appendChild(imgChecked)
+
+        liMae.replaceChild(btChecked, botao)
+
+        listaToDos.appendChild(liMae)
+        marcarConcluida(btChecked)
+    })
+}
+
+function marcarConcluida(botao) {
+    botao.addEventListener("click", function(event) {
+        event.preventDefault()
+        let liMae = botao.parentElement
+
+        let btDesfazer = document.createElement("button")
+        btDesfazer.className = "btDesfazer"
+        let imgDesfazer = document.createElement("img")
+        imgDesfazer.src = "" //colocar caminho para imagem de desfazer conclusão
+
+        btDesfazer.appendChild(imgDesfazer)
+
+        liMae.replaceChild(btDesfazer, botao)
+
+        listaConcluidos.appendChild(liMae)
+
+        desfazerToDo(btDesfazer)
     })
 }
 
@@ -114,10 +156,11 @@ buttonAddTask.addEventListener("click", function(event) {
     novoLi.appendChild(btEditar)
     novoLi.appendChild(btDelete)
 
-    list.appendChild(novoLi)
+    listaToDos.appendChild(novoLi)
 
     deletarToDo(btDelete)
     alterarToDo(btEditar)
+    marcarConcluida(btChecked)
 })
 
 botoesDeletar.forEach(function(botao) {
@@ -126,4 +169,8 @@ botoesDeletar.forEach(function(botao) {
 
 botoesEditar.forEach(function(botao) {
     alterarToDo(botao)
+})
+
+botoesConcluido.forEach(function(botao) {
+    marcarConcluida(botao)
 })
