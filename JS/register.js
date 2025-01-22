@@ -14,7 +14,7 @@ function register() {
                 key: keyValue,
             }
 
-        const objectJson = JSON.stringify(object);
+        let objectJson = JSON.stringify(object);
 
         localStorage.setItem(`${ID}` ,objectJson)
     } else {

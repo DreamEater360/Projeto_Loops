@@ -5,8 +5,8 @@ const erro = document.querySelector('#erro');
 
 function login() {
     if (localStorage.length > 0){
-        const userValue = String(user.value);
-        const keyValue = String(key.value);
+        let userValue = String(user.value);
+        let keyValue = String(key.value);
         let ID = createId(userValue);
 
         let object = JSON.parse(localStorage.getItem(`${ID}`));
@@ -31,7 +31,6 @@ function login() {
         console.log('Não existe nenhum cadastro no sistema!!!')
     }
         
-    
 }
 
 function createId(e){

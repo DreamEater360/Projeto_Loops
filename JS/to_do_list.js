@@ -42,6 +42,7 @@ buttonAddTask.addEventListener("click", function(event) {
 
     let nomeTarefa = document.createElement("p")
     nomeTarefa.textContent = inputTask.value
+    addLocalStorage(inputTask.value)
     inputTask.value = ''
 
     novoLi.appendChild(btChecked)
@@ -63,5 +64,36 @@ function lerElem(){
 }
 
 function atuaElem(){
+
+}
+
+function addLocalStorage(task){
+    let taskValue = String(task.value);
+    let ID = createId(taskValue);
+ 
+    let object = {task: taskValue,
+        }
+
+    let objectJson = JSON.stringify(object);
+    localStorage.setItem(`${ID}` ,objectJson);
+     
+}
+
+function attLocalStorage(taskId, novoValor){
+    let taskIdValue = String(taskId.value);
+    let ID = createId(taskIdValue);
+
+    if (localStorage.getItem(`${ID}`)){
+        let object = JSON.parse(localStorage.getItem(`${ID}`));
+        object.task = `${novoValor}`;
+        let objectJson = JSON.stringify(object);
+        localStorage.setItem(`${ID}`, objectJson);
+    }
+}
+
+function createId(e){
+
+    let ID = `${e.slice(0, 2)}${e.slice(5, 2)}${e.slice(1, 0)}`;
+    return ID
 
 }
