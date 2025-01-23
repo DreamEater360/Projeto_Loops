@@ -71,7 +71,7 @@ function marcarConcluida(botao) {
         let btDesfazer = document.createElement("button")
         btDesfazer.className = "btDesfazer"
         let imgDesfazer = document.createElement("img")
-        imgDesfazer.src = "" //colocar caminho para imagem de desfazer conclusão
+        imgDesfazer.src = "../img/desfazer_tarefa.png"
 
         btDesfazer.appendChild(imgDesfazer)
 
@@ -136,7 +136,7 @@ buttonAddTask.addEventListener("click", function(event) {
     imgChecked.alt = "Concluído"
     imgDelete.src = "../img/trash.png"
     imgDelete.alt = "Deletar"
-    imgEditar.src = ""  // colocar o caminho da imagem do botão editar aqui
+    imgEditar.src = "../img/editar.png"
     imgEditar.alt = "Editar"
     btChecked.className = "btConcluido"
     btDelete.className = "btDeletar"
