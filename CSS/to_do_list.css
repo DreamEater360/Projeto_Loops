@@ -65,6 +65,30 @@
     border-radius: 5px;
     margin-bottom: 20px;
   }
+
+ .btConcluido:hover{
+  opacity: 0.8;
+  }
+
+ .btConcluido:active{
+  opacity: 0.5;
+  }
+
+.btDeletar:hover{
+  opacity: 0.8;
+ }
+
+ .btDeletar:active{
+  opacity: 0.5;
+ }
+
+ .btEditar:hover{
+  opacity: 0.8;
+ }
+
+ .btEditar:active{
+  opacity: 0.5;
+ }
   
   img{
     height: 25px;
