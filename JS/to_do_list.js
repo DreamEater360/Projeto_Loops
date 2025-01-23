@@ -12,7 +12,13 @@ function deletarToDo(botao) {
         event.preventDefault()
 
         let liMae = botao.parentElement
-        delLocalStorage(liMae)
+        
+        let taskValue = String(liMae.textContent);
+        let ID = createId(taskValue);
+
+        localStorage.removeItem(ID);
+
+        console.log(localStorage.length)
         liMae.remove()
     })
 }
@@ -23,6 +29,7 @@ function alterarToDo(botao) {
 
         let liMae = botao.parentElement
         let nomeTarefa = liMae.querySelector("p")
+        let saveId = nomeTarefa.textContent
 
         let novoNome = document.createElement("input")
         novoNome.type = "text"
@@ -40,6 +47,22 @@ function alterarToDo(botao) {
             nomeTarefa.textContent = novoNome.value
             liMae.replaceChild(nomeTarefa, novoNome)
             liMae.replaceChild(botao, btSalvar)
+
+            let taskValue = String(saveId);
+            let ID = createId(taskValue);
+
+            if (localStorage.getItem(ID)){
+                let object = JSON.parse(localStorage.getItem(`${ID}`))
+                object.task = `${novoNome.value}`
+                let objectJson = JSON.stringify(object)
+                localStorage.removeItem(ID)
+                ID = createId(novoNome.value)
+                localStorage.setItem(ID, objectJson)
+                console.log(localStorage.length)
+                console.log(localStorage.getItem(ID))
+            }
+
+            
         })
     })
 }
@@ -83,39 +106,9 @@ function marcarConcluida(botao) {
     })
 }
 
-function addLocalStorage(task) {
-    let taskValue = String(task.value);
-    let ID = createId(taskValue);
- 
-    let object = {task: taskValue,
-        }
-
-    let objectJson = JSON.stringify(object);
-    localStorage.setItem(`${ID}` ,objectJson);
-     
-}
-
-function attLocalStorage(taskId, novoValor) {
-    if (localStorage.getItem(`${taskId}`)){
-        let object = JSON.parse(localStorage.getItem(`${ID}`));
-        object.task = `${novoValor}`;
-        let objectJson = JSON.stringify(object);
-        localStorage.setItem(`${taskId}`, objectJson);
-    }
-
-}
-
-function delLocalStorage(task){
-    let taskValue = String(task.value);
-    let ID = createId(taskValue);
-
-    localStorage.removeItem(`${ID}`);
-
-}
-
 function createId(e){
 
-    let ID = `${e.slice(0, 2)}${e.slice(5, 2)}${e.slice(1, 0)}`;
+    let ID = `${e.slice(0, 2)}${e.slice(5, 2)}${e.slice(1, 0)}${e.slice(-1)}`;
     return ID
 
 }
@@ -148,7 +141,22 @@ buttonAddTask.addEventListener("click", function(event) {
 
     let nomeTarefa = document.createElement("p")
     nomeTarefa.textContent = inputTask.value
-    addLocalStorage(inputTask.value)
+
+    let taskValue = String(inputTask.value)
+    let ID = createId(taskValue)
+
+    if (localStorage.getItem(ID)){
+        nomeTarefa.textContent = `${inputTask.value}${localStorage.length}`
+        ID = createId(nomeTarefa.textContent)
+    }
+
+    if (!localStorage.getItem(ID)){ 
+        let object = {task: taskValue,
+            }
+        let objectJson = JSON.stringify(object)
+        localStorage.setItem(ID ,objectJson)
+    }
+    console.log(localStorage.length)
     inputTask.value = ''
 
     novoLi.appendChild(btChecked)
