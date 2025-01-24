@@ -7,10 +7,10 @@
     }
   
   body{
-    background-color: #000000;
+    background-color: #1f142e;
   }
   .container{
-    background-color: #dcdcdc;
+    background-color: #4E6766;
     width: 500px;
     border-radius: 10px;
     padding: 20px;
@@ -20,6 +20,7 @@
   }
   
   .input-task{
+    font-family: 'Didot', serif;
     border: none;
     border-radius: 5px;
     width: 300px;
@@ -28,10 +29,11 @@
   }
   
   .button-add-task{
+    font-family: 'Didot', serif;
     border: none;
     border-radius: 5px;
     height: 40px;
-    background-color:#dcdcdc;
+    background-color:#A5C882;
     color: #000000;
     font-size: 17px;
     padding: 0 15px;
@@ -70,12 +72,20 @@
   opacity: 0.8;
   }
 
+  .btConcluido{
+    border: none;
+  }
+
  .btConcluido:active{
   opacity: 0.5;
   }
 
 .btDeletar:hover{
   opacity: 0.8;
+ }
+
+ .btDeletar{
+  border: none;
  }
 
  .btDeletar:active{
@@ -86,7 +96,22 @@
   opacity: 0.8;
  }
 
+ .btEditar{
+  border: none;
+ }
+
  .btEditar:active{
+  opacity: 0.5;
+ }
+
+ .btDesfazer:hover{
+  opacity: 0.8;
+ }
+ .btDesfazer{
+  border: none;
+ }
+
+ .btDesfazer:active{
   opacity: 0.5;
  }
   
