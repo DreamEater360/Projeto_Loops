@@ -18,7 +18,6 @@ function deletarToDo(botao) {
 
         localStorage.removeItem(ID);
 
-        console.log(localStorage.length)
         liMae.remove()
     })
 }
@@ -58,8 +57,6 @@ function alterarToDo(botao) {
                 localStorage.removeItem(ID)
                 ID = createId(novoNome.value)
                 localStorage.setItem(ID, objectJson)
-                console.log(localStorage.length)
-                console.log(localStorage.getItem(ID))
             }
 
             
@@ -156,7 +153,6 @@ buttonAddTask.addEventListener("click", function(event) {
         let objectJson = JSON.stringify(object)
         localStorage.setItem(ID ,objectJson)
     }
-    console.log(localStorage.length)
     inputTask.value = ''
 
     novoLi.appendChild(btChecked)

@@ -17,9 +17,14 @@ function register() {
         let objectJson = JSON.stringify(object);
 
         localStorage.setItem(`${ID}` ,objectJson)
+        console.log('Usuario cadastrado.')
+        erro.innerHTML = "Usuario cadastrado com sucesso!."
+        erro.style.color = 'green'
+        
     } else {
         console.log('Usuario ja cadastrado.')
         erro.innerHTML = "Usuario ja cadastrado, tente novamente."
+        erro.style.color = 'rgb(104, 6, 6)'
     }
     
 }
